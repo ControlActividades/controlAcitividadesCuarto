@@ -7,7 +7,7 @@ import { Observable, Subject, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class CanchaService {
-  API_URI = 'http://localhost:3000/canchas';
+  API_URI = 'https://backend-production-5386.up.railway.app/canchas';
   private refreshSubject = new Subject<void>();
 
   constructor(private http: HttpClient) {}

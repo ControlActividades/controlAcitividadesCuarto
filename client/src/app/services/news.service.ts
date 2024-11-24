@@ -13,7 +13,7 @@ export class NewsService {
   // Obtener noticias deportivas por fuente específica
   getSportsNewsBySource(source: string): Observable<any> {
     const params = new HttpParams()
-      .set('category', 'sports')
+      .set('category', 'sports') 
       .set('sources', source)  // Especificamos las fuentes
       .set('language', 'es')  // Establecer el idioma a español
       .set('apiKey', '4d33004c23044044aa02364d7c44f43e'); // Tu clave de API

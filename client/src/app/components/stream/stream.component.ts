@@ -13,7 +13,7 @@ export class StreamComponent implements OnInit, OnDestroy {
   accessToken: string | null = null;
   streamTitle: string = '';
   activeStream: any = null;
-  parentDomain: string = 'localhost';
+  parentDomain: string = 'controlac-8eff8.web.app';
   sanitizedUrl: SafeResourceUrl | null = null;
   checkStreamInterval: any;
   customTags: string[] = ['controlactividades', 'UTNG']; // Tus tags personalizados
@@ -56,17 +56,19 @@ export class StreamComponent implements OnInit, OnDestroy {
     if (hash) {
       const params = new URLSearchParams(hash.substring(1));
       const token = params.get('access_token');
-
+  
       if (token) {
         this.accessToken = token;
         localStorage.setItem('twitchAccessToken', this.accessToken);
       }
-
-      window.location.hash = '';
+  
+      window.location.hash = '';  // Limpia el hash para evitar futuras redirecciones no deseadas
     }
-
+  
     this.appComponent.enableLogout();
   }
+  
+  
 
   async startStream() {
     if (!this.accessToken) {
@@ -120,12 +122,13 @@ export class StreamComponent implements OnInit, OnDestroy {
     } catch (error) {
       console.error('Error updating stream tags:', error);
     }
-  }
+  } 
 
   async checkActiveStream() {
     if (!this.accessToken) {
       console.error('No access token found. Please log in.');
-      return;
+/*       this.login(); // Redirige al usuario para que inicie sesión nuevamente
+ */      return;
     }
 
     try {
@@ -133,13 +136,23 @@ export class StreamComponent implements OnInit, OnDestroy {
       console.log('Active Stream:', this.activeStream);
       if (this.activeStream) {
         this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-          `https://player.twitch.tv/?channel=${this.activeStream.user_name}&parent=${this.parentDomain}`
+          `https://player.twitch.tv/?channel=${this.activeStream.user_name}&parent=${encodeURIComponent(this.parentDomain)}`
         );
       } else {
         this.sanitizedUrl = null; // Limpia la URL si no hay stream activo
       }
     } catch (error) {
-      console.error('Error fetching active stream:', error);
+      const err = error as { response?: { status: number; data: any } };
+      if (err.response) {
+        console.error('Error fetching active stream:', err.response.data);
+        if (err.response.status === 401) {
+          console.error('Token inválido. Redirigiendo para obtener un nuevo token.');
+          this.login(); // Redirige al usuario para que inicie sesión nuevamente
+        }
+      } else {
+        console.error('Error inesperado:', error);
+      }
     }
   }
+  
 }

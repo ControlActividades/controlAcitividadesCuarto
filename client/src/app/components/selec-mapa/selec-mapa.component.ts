@@ -104,9 +104,9 @@ export class SelecMapaComponent implements OnInit {
     // Crear el contenido del cuadro de información
     const content = `
       <div>
-        <h4>${cancha.nombre}</h4> <!-- Asegúrate de que 'nombre' es la propiedad correcta -->
+        <h4>${cancha.nombre}</h4>
         <p>Ubicación: ${cancha.latitud}, ${cancha.longitud}</p>
-        <p>Más detalles sobre la cancha...</p> <!-- Puedes añadir más detalles aquí -->
+        <p>Más detalles sobre la cancha...</p> 
       </div>
     `;
 

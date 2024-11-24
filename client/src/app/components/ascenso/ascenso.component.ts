@@ -174,9 +174,8 @@ export class AscensoComponent implements OnInit {
     });
   }
 
-  // Enviar detalles del pago al backend
   sendPaymentDetailsToBackend(details: any): void {
-    this.http.post('https://localhost:3000/responsables/pago', details)
+    this.http.post('https://backend-production-5386.up.railway.app/responsables/pago', details)
       .subscribe(
         response => {
           console.log('Detalles del pago guardados exitosamente:', response);

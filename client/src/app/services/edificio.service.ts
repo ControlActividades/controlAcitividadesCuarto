@@ -7,7 +7,7 @@ import { Subject, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class EdificioService {
-  API_URI = 'http://localhost:3000/edificios'; //conexion
+  API_URI = 'https://backend-production-5386.up.railway.app/edificios'; //conexion
   private refreshSubject = new Subject<void>();
 
   constructor(private http: HttpClient) { } 

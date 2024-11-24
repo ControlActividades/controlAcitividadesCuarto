@@ -13,7 +13,7 @@ export class TwitchService {
   async getUserInfo() {
     const accessToken = localStorage.getItem('twitchAccessToken');
     const url = `${this.baseUrl}/users`;
-
+  
     const response = await axios.get(url, {
       headers: {
         'Client-ID': this.clientId,
@@ -22,6 +22,7 @@ export class TwitchService {
     });
     return response.data.data[0];
   }
+  
 
   async getActiveStream() {
     const userInfo = await this.getUserInfo();
@@ -138,3 +139,4 @@ export class TwitchService {
     }
   }
 }
+ 

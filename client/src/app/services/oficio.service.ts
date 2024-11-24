@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class OficioService {
 
-  API_URI = 'http://localhost:3000/oficio';
+  API_URI = 'https://backend-production-5386.up.railway.app/oficio';
 
   constructor(private http:HttpClient) { }
 

@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 export class SpotifyService {
   public clientId = '5e8346d1c48f4cfca7f42e70a7e6c0f4';
   public clientSecret = '391523739ba64c9b9a516af3a8fa82e8';
-  public redirectUri = 'http://localhost:4200/inicio/inicio';
+  public redirectUri = 'https://controlac-8eff8.web.app/inicio/inicio';
   private authUrl = 'https://accounts.spotify.com/api/token';
   public apiUrl = 'https://api.spotify.com/v1';
 

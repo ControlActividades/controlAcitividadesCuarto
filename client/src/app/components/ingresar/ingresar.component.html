@@ -134,6 +134,7 @@
                 <div *ngIf="existingUsernameError" class="error-message">{{ existingUsernameError }}</div>
                 <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
                 <div class="btn">
+                    <app-facebook class="facebook"></app-facebook>
                     <button id="register2" [disabled]="!responsableForm.valid">Registrarse</button>
                     <button id="register2" (click)="limpiar()">Limpiar</button>
                 </div>

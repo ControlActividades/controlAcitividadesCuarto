@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TwilioService {
-  private BASE_URL = 'http://localhost:3000/twilio';
+  private BASE_URL = 'https://backend-production-5386.up.railway.app/twilio';
 
   constructor(private http: HttpClient) {}
 

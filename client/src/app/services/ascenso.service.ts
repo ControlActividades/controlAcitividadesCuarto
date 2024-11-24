@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AscensoService {
-  private apiUrl = 'http://localhost:3000/responsables/ascenso/correo'; // URL de la API en el backend
+  private apiUrl = 'https://backend-production-5386.up.railway.app/responsables/ascenso/correo'; // URL de la API en el backend
 
   constructor(private http: HttpClient) {}
 

@@ -9,7 +9,7 @@ import { RespuestaVerificacion } from '../models/respuesta-verificacion';
   providedIn: 'root'
 })
 export class ResponsableService {
-  private API_URI = 'http://localhost:3000/responsables';
+  private API_URI = 'https://backend-production-5386.up.railway.app/responsables';
   public loggedIn = new BehaviorSubject<boolean>(this.hasToken());
   
   // Validar correo

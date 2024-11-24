@@ -15,7 +15,6 @@ import { ChatbotComponent } from "../chatbot/chatbot.component";
       ])
     ])
   ],
- 
 })
 export class InicioComponent implements OnInit {
   activeStream: any = null;
@@ -24,24 +23,34 @@ export class InicioComponent implements OnInit {
   streamsByUser: any[] = [];
   isLoading = false;
   error: string | null = null;
+  redirectUri: string = '';  // Aquí almacenaremos la URI de redirección dinámica
 
   constructor(private twitchService: TwitchService) {}
 
   ngOnInit() {
+    this.setRedirectUri();
     this.fetchStreams();
+  }
+
+  // Establecer la URI de redirección según el entorno (producción o desarrollo)
+  setRedirectUri() {
+    const isProduction = window.location.hostname === 'controlac-8eff8.web.app';
+    this.redirectUri = isProduction
+      ? 'https://controlac-8eff8.web.app/inicio/cancha'
+      : 'http://localhost:4200/inicio/cancha';
   }
 
   async fetchStreams() {
     this.isLoading = true;
     this.error = null;
-    
+
     try {
       await this.fetchActiveStream('controlactividades');
       await this.fetchUserStreams('controlactividades');
 
       if (!this.activeStream) {
         await this.fetchUserProfile('controlactividades');
-      } 
+      }
 
       this.setActiveStreamUrl();
     } catch (error) {
@@ -67,19 +76,17 @@ export class InicioComponent implements OnInit {
 
   async fetchUserStreams(userName: string) {
     try {
-      
       const userInfo = await this.twitchService.getUserInfoByUsername(userName);
       if (userInfo) {
         this.streamsByUser = await this.twitchService.getStreamsByUser(userInfo.id);
-        
-        // Enrich stream data with user profile images
+
+        // Enriquecer los datos del stream con imágenes de perfil de usuario
         for (let stream of this.streamsByUser) {
           const streamUserInfo = await this.twitchService.getUserInfoByUsername(stream.user_name);
           stream.profile_image_url = streamUserInfo.profile_image_url;
         }
         console.log('User Info:', userInfo);
-console.log('User Profile:', this.userProfile);
-
+        console.log('User Profile:', this.userProfile);
       }
     } catch (error) {
       console.error('Error fetching user streams:', error);

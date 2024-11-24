@@ -6,7 +6,7 @@ declare var H: any;
 
 @Component({
   selector: 'app-mapa-general',
-  templateUrl: './mapa-general.component.html',
+  templateUrl: './mapa-general.component.html', 
   styleUrls: ['./mapa-general.component.css']
 })
 export class MapaGeneralComponent {
@@ -14,7 +14,7 @@ export class MapaGeneralComponent {
   private map: any;
   private marker: any; // el marcador actual
   private fixedMarker: any; // marcador fijo en la ubicación deseada
-  private API_URI = 'http://localhost:3000/canchas'; // Reemplaza con tu URI real
+  private API_URI = 'https://backend-production-5386.up.railway.app/canchas';
   private router: any; // Router para calcular las rutas
 
   @Output() coordenadasSeleccionadas = new EventEmitter<{ lat: number, lng: number }>();
@@ -25,7 +25,7 @@ export class MapaGeneralComponent {
     this.platform = new H.service.Platform({
       apikey: 'f2D9Kf7afmHS5i7Jc5LRUtP3Kpf0cVZ6FLG21hFje-4'
     });
-    this.router = this.platform.getRoutingService(null, 8); // Inicializa el servicio de routing
+    this.router = this.platform.getRoutingService(null, 8); 
   }
 
   ngOnInit(): void {
@@ -82,10 +82,9 @@ export class MapaGeneralComponent {
   }
 
   private addMarker(lat: number, lng: number): void {
-    // Si el marcador ya existe, no lo movemos
     if (!this.marker) {
         // Usar un ícono de mono en lugar del ícono verde
-        const monkeyIconUrl = '../../../assets/location.png'; // Reemplaza con la URL de tu ícono de mono
+        const monkeyIconUrl = '../../../assets/location.png';
         const monkeyIcon = new H.map.Icon(monkeyIconUrl, { size: { w: 50, h: 50 } });
         this.marker = new H.map.Marker({ lat, lng }, { icon: monkeyIcon });
         this.map.addObject(this.marker);

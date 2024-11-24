@@ -13,7 +13,7 @@ interface CheckReservaResponse {
   providedIn: 'root' 
 })
 export class ReservasService {
-  API_URI = 'http://localhost:3000/reservas'; //conexion
+  API_URI = 'https://backend-production-5386.up.railway.app/reservas'; //conexion
   private refreshSubject = new Subject<void>();
 
   constructor(private http: HttpClient) { }

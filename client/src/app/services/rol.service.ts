@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Rol } from '../models/Rol';
+import { Rol } from '../models/rol';
 import { Observable, Subject, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class RolService {
 
-  API_URI = 'http://localhost:3000/roles'; //conexion
+  API_URI = 'https://backend-production-5386.up.railway.app/roles'; //conexion
 
   private refreshSubject = new Subject<void>();
 

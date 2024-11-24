@@ -6,7 +6,7 @@ declare const FB: any;
 @Injectable({
   providedIn: 'root'
 })
-export class FaceboolService {
+export class  FaceboolService {
   private profileImageUrlSource = new BehaviorSubject<string>('URL_ICONO_POR_DEFECTO');
   profileImageUrl$ = this.profileImageUrlSource.asObservable();
   constructor() { }
